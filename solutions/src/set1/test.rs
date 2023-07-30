@@ -1,7 +1,11 @@
-use super::hex2base::hex2base;
-use super::xor::fixed_xor;
-use super::single_byte_xor::single_byte_xor;
+// use super::hex2base::hex2base;
+// use super::xor::fixed_xor;
+// use super::single_byte_xor::single_byte_xor;
+use super::detect_single_character_xor::detect_single_character_xor;
+
+use std::path::Path;
 
 pub fn test() {
-    single_byte_xor("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
+    let msg = detect_single_character_xor(Path::new("/tmp/4.txt"));
+    println!("{msg}");
 }

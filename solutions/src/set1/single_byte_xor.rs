@@ -25,7 +25,7 @@ fn score_text(s: &str) -> f64 {
     return score
 }
 
-pub fn single_byte_xor(s: &str) {
+pub fn single_byte_xor(s: &str) -> (String, f64) {
     let raw_bytes = hex::decode(s).expect("Make sure input string is hex");
 
     let mut message = String::new();
@@ -43,5 +43,6 @@ pub fn single_byte_xor(s: &str) {
             message = String::from(String::from_utf8_lossy(&result));
         }
     }
-    println!("Message: {message} | Score: {best_score}");
+    // println!("Message: {message} | Score: {best_score}");
+    return (message, best_score)
 }
