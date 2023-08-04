@@ -46,3 +46,27 @@ pub fn single_byte_xor(s: &str) -> (String, f64) {
     // println!("Message: {message} | Score: {best_score}");
     return (message, best_score)
 }
+
+pub fn single_xor(s: String) -> u8{
+    // let raw_bytes = hex::decode(s).expect("Make sure input string is hex");
+
+    let mut message = String::new();
+    let mut best_score = f64::MIN;
+    let mut best_key = 1;
+    for c in 1..=255 {
+        let result: Vec<u8> = s.as_bytes()
+        .iter()
+        .map(|&b| b ^ c)
+        .collect();
+
+        let score = score_text(&String::from_utf8_lossy(&result));
+
+        if score > best_score {
+            best_score = score;
+            message = String::from(String::from_utf8_lossy(&result));
+            best_key = c;
+        }
+    }
+    // println!("Message: {message} | Score: {best_score}");
+    return best_key as u8
+}
