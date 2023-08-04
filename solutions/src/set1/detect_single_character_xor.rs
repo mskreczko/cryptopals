@@ -29,3 +29,17 @@ pub fn detect_single_character_xor(fname: impl AsRef<Path>) -> String {
     }
     best_msg
 }
+
+pub fn single_character_xor(data: Vec<String>) -> String {
+    let mut best_msg = String::new();
+    let mut best_score = f64::MIN;
+
+    for s in data.iter() {
+        let (msg, score) = single_byte_xor(s);
+        if score > best_score {
+            best_msg = msg;
+            best_score = score;
+        }
+    }
+    best_msg
+}
